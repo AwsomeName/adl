@@ -1,0 +1,10 @@
+xformers
+diffusers
+torch
+accelerate
+safetensors
+# differs
+Transformers
+accelerate
+opencv-python
+controlnet_aux
