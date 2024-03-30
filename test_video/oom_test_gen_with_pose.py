@@ -1,4 +1,4 @@
-from huggingface_hub import hf_hub_download
+# from huggingface_hub import hf_hub_download
 from PIL import Image
 import imageio
 
@@ -18,9 +18,14 @@ from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
 from diffusers.pipelines.text_to_video_synthesis.pipeline_text_to_video_zero import CrossFrameAttnProcessor
 
 model_id = "runwayml/stable-diffusion-v1-5"
-controlnet = ControlNetModel.from_pretrained("lllyasviel/sd-controlnet-openpose", torch_dtype=torch.float16)
+sdpath = "/home/lc/cv_models/stable-diffusion-v1-5"
+sdop_path = "/home/lc/cv_models/controlnet-openpose-sdxl-1.0"
+sdop_path = "/home/lc/cv_models/lllyasviel/sd-controlnet-openpose"
+# controlnet = ControlNetModel.from_pretrained("lllyasviel/sd-controlnet-openpose", torch_dtype=torch.float16)
+controlnet = ControlNetModel.from_pretrained(sdop_path, torch_dtype=torch.float16)
 pipeline = StableDiffusionControlNetPipeline.from_pretrained(
-    model_id, controlnet=controlnet, torch_dtype=torch.float16
+    sdpath, controlnet=controlnet, torch_dtype=torch.float16
+    # model_id, controlnet=controlnet, torch_dtype=torch.float16
 ).to("cuda")
 
 pipeline.unet.set_attn_processor(CrossFrameAttnProcessor(batch_size=2))

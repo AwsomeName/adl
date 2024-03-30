@@ -4,7 +4,8 @@ import cv2
 import numpy as np
 
 original_image = load_image(
-    "/home/lc/code/ADL/test_control_net/input_image_vermeer.png"
+    # "/home/lc/code/ADL/test_control_net/input_image_vermeer.png"
+    "/home/lc/code/ADL/png/input_image_vermeer.png"
     # "https://hf.co/datasets/huggingface/documentation-images/resolve/main/diffusers/input_image_vermeer.png"
 )
 
@@ -27,7 +28,7 @@ import torch
 # canny_path = "/home/lc/sv_models/sd-controlnet-canny"
 canny_path = "/home/lc/cv_models/sd-controlnet-canny"
 # sd_path = "/home/lc/sv_models/stable-diffusion-2-1"
-sd_path = "/home/lc/cv_models/stable-diffusion-2-1"
+sd_path = "/home/lc/cv_models/stable-diffusion-v1-5"
 # controlnet = ControlNetModel.from_pretrained("lllyasviel/sd-controlnet-canny", torch_dtype=torch.float16, use_safetensors=True)
 controlnet = ControlNetModel.from_pretrained(canny_path, torch_dtype=torch.float16, use_safetensors=True)
 pipe = StableDiffusionControlNetPipeline.from_pretrained(

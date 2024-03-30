@@ -2,8 +2,10 @@ import torch
 from diffusers import I2VGenXLPipeline
 from diffusers.utils import export_to_gif, load_image
 
-pipeline = I2VGenXLPipeline.from_pretrained("ali-vilab/i2vgen-xl", torch_dtype=torch.float16, variant="fp16")
-pipeline.enable_model_cpu_offload()
+iv_path = "/home/lc/cv_models/i2vgen-xl"
+pipeline = I2VGenXLPipeline.from_pretrained(iv_path, torch_dtype=torch.float16, variant="fp16")
+# pipeline = I2VGenXLPipeline.from_pretrained("ali-vilab/i2vgen-xl", torch_dtype=torch.float16, variant="fp16")
+# pipeline.enable_model_cpu_offload()
 
 # image_url = "https://huggingface.co/datasets/diffusers/docs-images/resolve/main/i2vgen_xl_images/img_0009.png"
 image_path = "/home/lc/code/ADL/png/img_0009.png"

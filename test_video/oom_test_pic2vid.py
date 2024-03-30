@@ -14,6 +14,12 @@ image = load_image("/home/lc/code/ADL/png/rocket.png")
 image = image.resize((1024, 576))
 
 generator = torch.manual_seed(42)
-frames = pipeline(image, decode_chunk_size=8, generator=generator).frames[0]
-g_mp4 = export_to_video(frames, "generated.mp4", fps=7)
-g_mp4.save("./test.mp4")
+# pipeline.enable_model_cpu_offload() 
+frames = pipeline(image, decode_chunk_size=2, generator=generator).frames[0]
+# frames = pipeline(image, decode_chunk_size=8, generator=generator).frames[0]
+# pipeline.enable_model_cpu_offload()
+# pipeline.unet.enable_forward_chunking()
+# frames = pipeline(image, decode_chunk_size=2, generator=generator, num_frames=25).frames[0]
+
+export_to_video(frames, "generated.mp4", fps=7)
+# g_mp4.save("./test.mp4")
