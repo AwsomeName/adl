@@ -1,6 +1,6 @@
 import torch
 from diffusers import AnimateDiffPipeline, MotionAdapter, EulerDiscreteScheduler
-from diffusers.utils import export_to_gif, load_image, make_image_grid
+from diffusers.utils import export_to_gif
 # from huggingface_hub import hf_hub_download
 from safetensors.torch import load_file
 
@@ -27,22 +27,14 @@ pipe.scheduler = EulerDiscreteScheduler.from_config(
     pipe.scheduler.config, 
     timestep_spacing="trailing", 
     beta_schedule="linear")
-
-pipe.safety_checker = lambda images, clip_input: (images, None)
-
 print("load scheduler done")
 
-
-
-init_image = load_image("/home/lc/code/ADL/png/测试.png").convert("RGB")
-# init_image = load_image("/home/lc/code/ADL/png/雷神_副本.png").convert("RGB")
-# image = pipeline(prompt, image=init_image).images[0]
 print("start pip")
 output = pipe(
-    # prompt="The girl is cooking",
-    prompt="The girl",
+    prompt="A girl smiling", 
+    # prompt="原神角色雷神在做饭", 
+    # prompt="The role of Genshin Impact: Lei Shen is cooking",
     guidance_scale=1.0, 
-    image=init_image,
     num_inference_steps=step)
 print("start gen gif ")
 export_to_gif(output.frames[0], "animation.gif")
