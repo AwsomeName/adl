@@ -1,0 +1,1 @@
+https://huggingface.co/docs/diffusers/using-diffusers/text-img2vid?t2v-zero=pose+control

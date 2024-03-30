@@ -8,3 +8,4 @@ Transformers
 accelerate
 opencv-python
 controlnet_aux
+imageio[ffmpeg]
